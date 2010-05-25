@@ -3,11 +3,11 @@
         {{ content_obj.vote_total }}
         <span>
             {% if can_vote %}
-                <a class="liker" href="{% url like_modelbase content_obj.id 1 %}">I Like</a>
+                <a class="liker" href="{% url like content_type content_obj.id 1 %}">I Like</a>
                 <script type="text/javascript" src="/media/likes/includes/likes.js"></script>
                 <script type="text/javascript">
                     $(function() {
-                        like(".liker", "{% url like_modelbase_ajax content_obj.id 1 %}", ".likes");
+                        like(".liker", "{% url like content_type content_obj.id 1 %}", ".likes");
                     });
                 </script> 
             {% else %}
