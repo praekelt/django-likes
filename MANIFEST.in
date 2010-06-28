@@ -1,3 +1,6 @@
 include AUTHORS
 include LICENSE
 include README.rst
+recursive-include likes/media *
+recursive-include likes/templates *
+recursive-include likes/templatetags *
