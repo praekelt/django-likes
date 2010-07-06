@@ -1,7 +1,7 @@
 from secretballot import views
 
 def can_vote(request, content_type, object_id, vote):
-    return content_type.model_class().objects.get(id=object_id).can_vote(request)
+    return content_type.model_class().objects.get(id=object_id).can_vote(request)[0]
   
 def like(request, content_type, id, vote):
     url_friendly_content_type = content_type
