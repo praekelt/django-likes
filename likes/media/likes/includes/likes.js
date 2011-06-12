@@ -1,11 +1,12 @@
-function like(click_selector, url, replace_selector) {
-    $(click_selector).click(function() {
-        $.ajax({
-            url: url,
-            success: function(html){
-                $(replace_selector).replaceWith(html);
-            }
-        });
-        return false;
+$('a.liker').live('click', function(event){
+    event.preventDefault();
+    var el = $(this);
+    var replace_selector = el.attr('replace_selector');
+    if (!replace_selector)
+        var replace_target = el.parents('.likes:first');
+    else
+        var replace_target = $(replace_selector);
+    $.get(el.attr('href'), {}, function(data){
+        replace_target.html(data); 
     });
-}
+});
