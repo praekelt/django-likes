@@ -1,3 +1,5 @@
+from django.http import HttpResponseNotFound
+
 from secretballot import views
 from secretballot.models import Vote
 
@@ -5,6 +7,11 @@ def can_vote(request, content_type, object_id, vote):
     return content_type.model_class().objects.get(id=object_id).can_vote(request)[0]
   
 def like(request, content_type, id, vote):
+    # Crawlers will follow the like link if anonymous liking is enabled. They
+    # typically do not have referrer set.
+    if not request.META.has_key('HTTP_REFERER'):
+        return HttpResponseNotFound()
+
     url_friendly_content_type = content_type
     content_type = content_type.replace("-", ".")
     if request.is_ajax():
