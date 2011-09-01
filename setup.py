@@ -21,4 +21,8 @@ setup(
         "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
     ],
     zip_safe=False,
+    install_requires = [
+        'django-secretballot',
+    ],
+
 )
