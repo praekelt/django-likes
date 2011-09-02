@@ -4,6 +4,7 @@ from django import template
 
 register = template.Library()
 
+
 @register.inclusion_tag('likes/inclusion_tags/likes.html', takes_context=True)
 def likes(context, obj):
     request = context['request']
