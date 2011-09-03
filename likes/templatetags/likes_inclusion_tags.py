@@ -2,7 +2,7 @@ from secretballot.models import Vote
 
 from django import template
 
-from likes.utils import can_vote
+from likes.utils import can_vote, likes_enabled
 
 register = template.Library()
 
@@ -16,6 +16,7 @@ def likes(context, obj):
     can_vote_result, vote_status = can_vote(obj, request.user, request)
     context.update({
         'content_obj': obj,
+        'likes_enabled':likes_enabled(obj, request),
         'can_vote': can_vote_result,
         'vote_status': vote_status,
         'content_type': "-".join((obj._meta.app_label, obj._meta.module_name)),

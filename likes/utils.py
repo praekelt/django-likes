@@ -1,5 +1,12 @@
-from likes.signals import can_vote_test
-from likes.exceptions import CannotVoteException
+from likes.signals import likes_enabled_test, can_vote_test
+from likes.exceptions import LikesNotEnabledException, CannotVoteException
+
+def likes_enabled(obj, request):
+    try:
+        likes_enabled_test.send(obj, request=request)
+    except LikesNotEnabledException:
+        return False
+    return True
 
 def can_vote(obj, user, request):
     # todo: need a check here to see if voting is enabled on the class. Made
