@@ -1,12 +1,13 @@
+{% if import_js %}
+    <script type="text/javascript" src="/media/likes/includes/likes.js"></script>
+{% endif %}
+
 {% if likes_enabled %}
     <p class="likes">
         {{ content_obj.vote_total }}
         <span>
             {% if can_vote %}            
                 <a class="liker" href="{% url like content_type content_obj.id 1 %}">I Like</a>
-                {% if import_js %}
-                    <script type="text/javascript" src="/media/likes/includes/likes.js"></script>
-                {% endif %}
             {% else %}
                 Likes
             {% endif %}
