@@ -13,7 +13,7 @@ def _votes_enabled(obj):
 
 def likes_enabled(obj, request):
     if not _votes_enabled(obj):
-        return False
+        return False, None
     try:
         likes_enabled_test.send(obj, request=request)
     except LikesNotEnabledException:
@@ -22,7 +22,7 @@ def likes_enabled(obj, request):
 
 def can_vote(obj, user, request):
     if not _votes_enabled(obj):
-        return False
+        return False, None
     try:
         can_vote_test.send(obj, user=user, request=request)
     except CannotVoteException as e:
