@@ -6,6 +6,7 @@ from likes.utils import can_vote, likes_enabled
 
 register = template.Library()
 
+
 @register.inclusion_tag('likes/inclusion_tags/likes.html', takes_context=True)
 def likes(context, obj):
     request = context['request']

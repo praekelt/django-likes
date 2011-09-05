@@ -1,5 +1,12 @@
 from setuptools import setup, find_packages
 
+from setuptools.command.test import test
+
+def run_tests(self):
+    from setuptest.runtests import runtests
+    return runtests(self)
+test.run_tests = run_tests
+
 setup(
     name='django-likes',
     version='0.0.2',
@@ -11,6 +18,13 @@ setup(
     url='http://github.com/praekelt/django-likes',
     packages = find_packages(),
     include_package_data=True,
+    install_requires = [
+        'django-secretballot',
+    ],
+    tests_require=[
+        'django-setuptest',
+    ],
+    test_suite="likes.tests",
     classifiers = [
         "Programming Language :: Python",
         "License :: OSI Approved :: BSD License",
@@ -21,8 +35,4 @@ setup(
         "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
     ],
     zip_safe=False,
-    install_requires = [
-        'django-secretballot',
-    ],
-
 )
