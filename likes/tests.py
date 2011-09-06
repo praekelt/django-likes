@@ -27,7 +27,12 @@ class TestCase(TestCase):
         self.client = Client()
     
     def test_like(self):
+        # Anonymous vote
         response = self.client.get('/like/auth-user/%s/1' % self.user.id)
         # Expect a redirect
         self.assertEqual(response.status_code, 302)
 
+    def test_like_ajax(self):
+        # Anonymous vote
+        response = self.client.get('/like/auth-user/%s/1' % self.user.id, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(response.status_code, 200)
