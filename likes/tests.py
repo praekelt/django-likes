@@ -1,9 +1,33 @@
-import unittest
+from django.test import TestCase
+from django.contrib.auth.models import User
+from django.test.client import Client as BaseClient, FakePayload
+from django.core.handlers.wsgi import WSGIRequest
 
+import secretballot
 from likes import middleware, models, urls, views
 from likes.templatetags import likes_inclusion_tags
 
+class Client(BaseClient):
+    """Bug in django/test/client.py omits wsgi.input"""
 
-class TestCase(unittest.TestCase):
-    def test_something(self):
-        raise NotImplementedError('Test not implemented. Bad developer!')
+    def _base_environ(self, **request):
+        result = super(Client, self)._base_environ(**request)
+        result['HTTP_USER_AGENT'] = 'Django Unittest'
+        result['HTTP_REFERER'] = 'dummy'
+        result['wsgi.input'] = FakePayload('')
+        return result
+
+class TestCase(TestCase):
+    """Liking cannot be done programatically since it is tied too closely to a
+    request. Do through-the-web tests."""
+
+    def setUp(self):
+        secretballot.enable_voting_on(User)
+        self.user = User.objects.create_user('john', 'john@foo.com', 'password')
+        self.client = Client()
+    
+    def test_like(self):
+        response = self.client.get('/like/auth-user/%s/1' % self.user.id)
+        # Expect a redirect
+        self.assertEqual(response.status_code, 302)
+
