@@ -1,12 +1,5 @@
 from setuptools import setup, find_packages
 
-from setuptools.command.test import test
-
-def run_tests(self):
-    from setuptest.runtests import runtests
-    return runtests(self)
-test.run_tests = run_tests
-
 setup(
     name='django-likes',
     version='0.0.2',
@@ -22,9 +15,9 @@ setup(
         'django-secretballot',
     ],
     tests_require=[
-        'django-setuptest',
+        'django-setuptest>=0.0.6',
     ],
-    test_suite="likes.tests",
+    test_suite="setuptest.SetupTestSuite",
     classifiers = [
         "Programming Language :: Python",
         "License :: OSI Approved :: BSD License",
