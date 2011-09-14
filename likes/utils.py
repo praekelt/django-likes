@@ -22,9 +22,9 @@ def likes_enabled(obj, request):
 
 def can_vote(obj, user, request):
     if not _votes_enabled(obj):
-        return False, None
+        return False
     try:
         can_vote_test.send(obj, user=user, request=request)
-    except CannotVoteException as e:
-        return False, e
-    return True, None        
+    except CannotVoteException:
+        return False
+    return True

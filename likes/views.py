@@ -6,8 +6,7 @@ from secretballot.models import Vote
 from likes.utils import can_vote
 
 def can_vote_test(request, content_type, object_id, vote):
-    result, dontcare = can_vote(content_type.model_class().objects.get(id=object_id), request.user, request)
-    return result
+    return can_vote(content_type.model_class().objects.get(id=object_id), request.user, request)
 
 def like(request, content_type, id, vote):
     # Crawlers will follow the like link if anonymous liking is enabled. They
@@ -28,7 +27,6 @@ def like(request, content_type, id, vote):
             extra_context={
                 'likes_enabled': True,
                 'can_vote': False,
-                'vote_status': 'voted',
                 "content_type": url_friendly_content_type
             }
         )
