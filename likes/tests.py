@@ -7,6 +7,7 @@ import secretballot
 from likes import middleware, models, urls, views
 from likes.templatetags import likes_inclusion_tags
 
+
 class Client(BaseClient):
     """Bug in django/test/client.py omits wsgi.input"""
 
@@ -17,15 +18,20 @@ class Client(BaseClient):
         result['wsgi.input'] = FakePayload('')
         return result
 
+
 class TestCase(TestCase):
     """Liking cannot be done programatically since it is tied too closely to a
     request. Do through-the-web tests."""
 
     def setUp(self):
         secretballot.enable_voting_on(User)
-        self.user = User.objects.create_user('john', 'john@foo.com', 'password')
+        self.user = User.objects.create_user(
+            'john',
+            'john@foo.com',
+            'password'
+        )
         self.client = Client()
-    
+
     def test_like(self):
         # Anonymous vote
         response = self.client.get('/like/auth-user/%s/1' % self.user.id)
@@ -34,5 +40,8 @@ class TestCase(TestCase):
 
     def test_like_ajax(self):
         # Anonymous vote
-        response = self.client.get('/like/auth-user/%s/1' % self.user.id, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        response = self.client.get(
+            '/like/auth-user/%s/1' % self.user.id,
+            HTTP_X_REQUESTED_WITH='XMLHttpRequest'
+        )
         self.assertEqual(response.status_code, 200)
