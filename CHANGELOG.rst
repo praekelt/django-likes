@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.0.4 (2011-09-14)
+------------------
+#. Documentation, number of fixes.
+
 0.0.3
 -----
 #. Handle multiple likes buttons on the same page
