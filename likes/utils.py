@@ -15,7 +15,7 @@ def _votes_enabled(obj):
 
 def likes_enabled(obj, request):
     if not _votes_enabled(obj):
-        return False, None
+        return False
     try:
         likes_enabled_test.send(obj, request=request)
     except LikesNotEnabledException:
