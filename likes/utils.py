@@ -1,3 +1,5 @@
+from secretballot.models import Vote
+
 from likes.signals import likes_enabled_test, can_vote_test
 from likes.exceptions import LikesNotEnabledException, CannotVoteException
 
@@ -23,6 +25,14 @@ def likes_enabled(obj, request):
 def can_vote(obj, user, request):
     if not _votes_enabled(obj):
         return False
+
+    # Common predicate
+    if Vote.objects.filter(
+        object_id=modelbase_obj.id, 
+        token=request.secretballot_token
+    ).count() != 0:
+        return False
+
     try:
         can_vote_test.send(obj, user=user, request=request)
     except CannotVoteException:
