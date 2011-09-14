@@ -37,7 +37,11 @@ django-likes provides an inclusion tag called ``likes`` which you can use to ren
 
 Signals
 ~~~~~~~
+likes.signals.likes_enabled_test
+++++++++++++++++++++++++++++++++
 To determine whether or not liking/voting should be enabled on an object, connect a signal handler to the ``likes.signals.likes_enabled_test`` signal, raising a ``likes.exceptions.LikesNotEnabledException`` if liking should be disabled. The default behaviour is that liking is enabled for all secretballot enabled objects.
 
+likes.signals.can_vote_test
++++++++++++++++++++++++++++
 To determine whether or not the current requesting user can vote, connect a signal handler to the ``likes.signals.can_vote_test`` signal, raising a ``likes.exceptions.CannotVoteException`` if the current user should not be allowed to vote (the handler receives a request object). The default behaviour is that all users can vote except if they have previously voted on the same object.
 
