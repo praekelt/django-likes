@@ -30,7 +30,7 @@ Installation
 
     TEMPLATE_CONTEXT_PROCESSORS = (
         ...other context processors...
-        "preferences.context_processors.preferences_cp",
+        "django.core.context_processors.request",
     )
 
 Usage
@@ -57,7 +57,7 @@ django-likes provides an inclusion tag called ``likes`` which renders a like but
 
     In order for the ``likes`` tag to work the request object needs to be available within the template's context. Thus you have to use `RequestContext <https://docs.djangoproject.com/en/dev/ref/templates/api/#subclassing-context-requestcontext>`_ in your views to construct context, which, combined with the ``django.core.context_processors.request`` context processor, will ensure the request object is available as part of the context.
 
-The template tag supports AJAX style liking. To enable it you need ensure django-likes' static media is accessable, see `managing static files <https://docs.djangoproject.com/en/dev/howto/static-files/>`_. You also need to load jQuery somewhere in your template, e.g.::
+The template tag supports AJAX style liking. To enable it you need ensure django-likes' static media is accessible, see `managing static files <https://docs.djangoproject.com/en/dev/howto/static-files/>`_. You also need to load jQuery somewhere in your template, e.g.::
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
 
