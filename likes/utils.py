@@ -28,7 +28,7 @@ def can_vote(obj, user, request):
 
     # Common predicate
     if Vote.objects.filter(
-        object_id=modelbase_obj.id, 
+        object_id=obj.id, 
         token=request.secretballot_token
     ).count() != 0:
         return False
