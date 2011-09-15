@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.0.5 (2011-09-15)
+------------------
+#. Corrected manifest to include missing static resources.
+
 0.0.4 (2011-09-14)
 ------------------
 #. Documentation, number of fixes.
