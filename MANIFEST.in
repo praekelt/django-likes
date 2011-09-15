@@ -2,6 +2,6 @@ include AUTHORS.rst
 include CHANGELOG.rst
 include LICENSE
 include README.rst
-recursive-include likes/media *
+recursive-include likes/static *
 recursive-include likes/templates *
 recursive-include likes/templatetags *
