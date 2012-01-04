@@ -3,7 +3,7 @@
 {% endif %}
 
 {% if likes_enabled %}
-    <p class="likes">
+    <div class="likes">
         {{ content_obj.vote_total }}
         <span>
             {% if can_vote %}            
@@ -12,5 +12,5 @@
                 Likes
             {% endif %}
         </span>
-    </p>
+    </div>
 {% endif %}
