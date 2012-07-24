@@ -4,7 +4,7 @@
 
 {% if likes_enabled %}
     <div class="likes">
-        {{ content_obj.vote_total }}
+        {{ content_obj.total_upvotes }}
         <span>
             {% if can_vote %}            
                 <a class="liker" href="{% url like content_type content_obj.id 1 %}">I Like</a>
