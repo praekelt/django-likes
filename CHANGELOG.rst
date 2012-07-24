@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.0.6 (2012-07-24)
+------------------
+#. Allow for downvotes.
+
 0.0.5 (2011-09-15)
 ------------------
 #. Corrected manifest to include missing static resources.
