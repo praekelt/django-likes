@@ -1,7 +1,7 @@
-from secretballot.models import Vote
-
+from django.contrib.contenttypes.models import ContentType
 from likes.signals import likes_enabled_test, can_vote_test
 from likes.exceptions import LikesNotEnabledException, CannotVoteException
+from secretballot.models import Vote
 
 
 def _votes_enabled(obj):
@@ -19,7 +19,11 @@ def likes_enabled(obj, request):
     if not _votes_enabled(obj):
         return False
     try:
-        likes_enabled_test.send(obj, request=request)
+        likes_enabled_test.send(
+            sender=obj.__class__,
+            instance=obj,
+            request=request
+        )
     except LikesNotEnabledException:
         return False
     return True
@@ -32,12 +36,18 @@ def can_vote(obj, user, request):
     # Common predicate
     if Vote.objects.filter(
         object_id=obj.id,
+        content_type=ContentType.objects.get_for_model(obj),
         token=request.secretballot_token
     ).count() != 0:
         return False
 
     try:
-        can_vote_test.send(obj, user=user, request=request)
+        can_vote_test.send(
+            sender=obj.__class__,
+            instance=obj,
+            user=user,
+            request=request
+        )
     except CannotVoteException:
         return False
     return True
