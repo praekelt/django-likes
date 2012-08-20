@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.0.8 (2012-08-20)
+------------------
+#. Updated ``likes_enabled_test`` and ``can_vote_test`` signals to send through sender, thereby allowing listeners to listen to specific senders.
+
 0.0.7 (2012-08-20)
 ------------------
 #. Revert to vote_total on inclusion tag.
