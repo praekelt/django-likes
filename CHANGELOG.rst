@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.0.7 (2012-08-20)
+------------------
+#. Revert to vote_total on inclusion tag.
+
 0.0.6 (2012-07-24)
 ------------------
 #. Allow for downvotes.
