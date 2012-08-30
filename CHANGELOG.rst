@@ -1,6 +1,10 @@
 Changelog
 =========
 
+Next
+----
+#. Added ability to specify a template to be rendered for ``likes`` inclusion tag.
+
 0.0.8 (2012-08-20)
 ------------------
 #. Updated ``likes_enabled_test`` and ``can_vote_test`` signals to send through sender, thereby allowing listeners to listen to specific senders.
