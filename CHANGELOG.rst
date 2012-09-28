@@ -1,8 +1,8 @@
 Changelog
 =========
 
-Next
-----
+0.0.9 (2012-09-28)
+------------------
 #. Added ability to specify a template to be rendered for ``likes`` inclusion tag.
 
 0.0.8 (2012-08-20)
