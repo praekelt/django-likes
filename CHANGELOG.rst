@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.0.10 (2012-10-08)
+------------------
+#. Added ``object_liked`` signal that is sent on like.
+
 0.0.9 (2012-09-28)
 ------------------
 #. Added ability to specify a template to be rendered for ``likes`` inclusion tag.

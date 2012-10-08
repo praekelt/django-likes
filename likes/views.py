@@ -1,14 +1,16 @@
 from django.http import HttpResponseNotFound
+from django.contrib.contenttypes.models import ContentType
 
 from secretballot import views
 from secretballot.models import Vote
 
 from likes.utils import can_vote
+from likes import signals
 
 
 def can_vote_test(request, content_type, object_id, vote):
     return can_vote(
-        content_type.model_class().objects.get(id=object_id),
+        content_type.get_object_for_this_type(id=object_id),
         request.user,
         request
     )
@@ -21,9 +23,10 @@ def like(request, content_type, id, vote):
         return HttpResponseNotFound()
 
     url_friendly_content_type = content_type
-    content_type = content_type.replace("-", ".")
+    app, modelname = content_type.split('-')
+    content_type = ContentType.objects.get(app_label=app, model__iexact=modelname)
     if request.is_ajax():
-        return views.vote(
+        response = views.vote(
             request,
             content_type=content_type,
             object_id=id,
@@ -41,7 +44,7 @@ def like(request, content_type, id, vote):
         # from global vote count) to end of URL to bypass local cache.
         redirect_url = '%s?v=%s' % (request.META['HTTP_REFERER'], \
                 Vote.objects.count() + 1)
-        return views.vote(
+        response = views.vote(
             request,
             content_type=content_type,
             object_id=id,
@@ -49,3 +52,7 @@ def like(request, content_type, id, vote):
             redirect_url=redirect_url,
             can_vote_test=can_vote_test
         )
+    
+    signals.object_liked.send(sender=content_type.model_class(),
+        instance=content_type.get_object_for_this_type(id=id), request=request)
+    return response
