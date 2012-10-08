@@ -54,5 +54,5 @@ def like(request, content_type, id, vote):
         )
     
     signals.object_liked.send(sender=content_type.model_class(),
-        instance=content_type.get_object_for_this_type(id=id), request=self.request)
+        instance=content_type.get_object_for_this_type(id=id), request=request)
     return response
