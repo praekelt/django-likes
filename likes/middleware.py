@@ -1,18 +1,21 @@
+try:
+    from hashlib import md5
+except ImportError:
+    from md5 import md5
+
 from django.http import HttpResponseBadRequest
 
 from secretballot.middleware import SecretBallotIpUseragentMiddleware
 
 
 class SecretBallotUserIpUseragentMiddleware(SecretBallotIpUseragentMiddleware):
-    def process_request(self, request):
-        if 'REMOTE_ADDR' in request.META and 'HTTP_USER_AGENT' in request.META:
-            super(SecretBallotIpUseragentMiddleware, self).process_request(request)
-        else:
-            return HttpResponseBadRequest()
 
     def generate_token(self, request):
         if request.user.is_authenticated():
             return request.user.username
         else:
-            return super(SecretBallotUserIpUseragentMiddleware, self).\
-                    generate_token(request)
+            try:
+                s = ''.join((request.META['REMOTE_ADDR'], request.META['HTTP_USER_AGENT']))
+                return md5(s).hexdigest()
+            except KeyError:
+                return None
