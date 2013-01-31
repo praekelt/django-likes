@@ -40,6 +40,10 @@ def can_vote(obj, user, request):
         token=request.secretballot_token
     ).count() != 0:
         return False
+    
+    # The middleware could not generate a token, probably bot with missing UA
+    if request.secretballot_token is None:
+        return False
 
     try:
         can_vote_test.send(
