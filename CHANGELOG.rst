@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.0.11 (2013-01-31)
+-------------------
+#. Remove error thrown by middleware when there is no user agent and use alternative to prevent spambot likes. This is a django-secretballot bug.
+
 0.0.10 (2012-10-08)
 ------------------
 #. Added ``object_liked`` signal that is sent on like.
