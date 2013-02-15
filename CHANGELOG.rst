@@ -1,6 +1,10 @@
 Changelog
 =========
 
+next
+----
+#. Only use jQuery if it is present.
+
 0.0.11 (2013-01-31)
 -------------------
 #. Remove error thrown by middleware when there is no user agent and use alternative to prevent spambot likes. This is a django-secretballot bug.
