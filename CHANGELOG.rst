@@ -4,6 +4,7 @@ Changelog
 next
 ----
 #. Only use jQuery if it is present.
+#. Add replacement middleware for secretballot until https://github.com/sunlightlabs/django-secretballot/pull/10 is merged.
 
 0.0.11 (2013-01-31)
 -------------------
