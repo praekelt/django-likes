@@ -2,7 +2,7 @@ if (typeof $ != 'undefined')
 {
 
 $(document).ready(function() {
-    $('a.likes').on('click', function(event){
+    $('a.liker').on('click', function(event){
         event.preventDefault();
         var el = $(this);
         var replace_selector = el.attr('replace_selector');
