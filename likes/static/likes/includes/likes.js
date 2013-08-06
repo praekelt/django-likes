@@ -1,7 +1,7 @@
 if (typeof $ != 'undefined')
 {
 
-$('a.liker').live('click', function(event){
+$('div.liker').delegate('a', 'click', function(event){
     event.preventDefault();
     var el = $(this);
     var replace_selector = el.attr('replace_selector');
