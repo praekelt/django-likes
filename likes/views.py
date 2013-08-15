@@ -1,3 +1,5 @@
+import random
+
 from django.http import HttpResponseNotFound
 from django.contrib.contenttypes.models import ContentType
 
@@ -42,8 +44,8 @@ def like(request, content_type, id, vote):
     else:
         # Redirect to referer but append unique number(determined
         # from global vote count) to end of URL to bypass local cache.
-        redirect_url = '%s?v=%s' % (request.META['HTTP_REFERER'], \
-                Vote.objects.count() + 1)
+        redirect_url = '%s?v=%s' % (request.META['HTTP_REFERER'],
+                                    random.randint(0, 10))
         response = views.vote(
             request,
             content_type=content_type,
@@ -52,7 +54,7 @@ def like(request, content_type, id, vote):
             redirect_url=redirect_url,
             can_vote_test=can_vote_test
         )
-    
+
     signals.object_liked.send(sender=content_type.model_class(),
         instance=content_type.get_object_for_this_type(id=id), request=request)
     return response

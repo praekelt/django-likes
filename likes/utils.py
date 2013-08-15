@@ -38,9 +38,9 @@ def can_vote(obj, user, request):
         object_id=obj.id,
         content_type=ContentType.objects.get_for_model(obj),
         token=request.secretballot_token
-    ).count() != 0:
+    ).exists():
         return False
-    
+
     # The middleware could not generate a token, probably bot with missing UA
     if request.secretballot_token is None:
         return False
