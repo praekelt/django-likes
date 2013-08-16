@@ -1,8 +1,8 @@
 Changelog
 =========
 
-next
-----
+0.0.12 (2013-08-16)
+-------------------
 #. Only use jQuery if it is present.
 
 0.0.11 (2013-01-31)
