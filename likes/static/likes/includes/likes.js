@@ -1,3 +1,6 @@
+if (typeof $ != 'undefined')
+{
+
 $('a.liker').live('click', function(event){
     event.preventDefault();
     var el = $(this);
@@ -10,3 +13,5 @@ $('a.liker').live('click', function(event){
         replace_target.html(data); 
     });
 });
+
+}
