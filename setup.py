@@ -13,6 +13,7 @@ setup(
     include_package_data=True,
     install_requires = [
         'django-secretballot',
+        'django-celery'
     ],
     tests_require=[
         'django-setuptest>=0.0.6',

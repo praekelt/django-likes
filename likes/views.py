@@ -4,10 +4,9 @@ from django.http import HttpResponseNotFound
 from django.contrib.contenttypes.models import ContentType
 
 from secretballot import views
-from secretballot.models import Vote
 
 from likes.utils import can_vote
-from likes import signals
+from likes import signals, tasks
 
 
 def can_vote_test(request, content_type, object_id, vote):
@@ -26,7 +25,8 @@ def like(request, content_type, id, vote):
 
     url_friendly_content_type = content_type
     app, modelname = content_type.split('-')
-    content_type = ContentType.objects.get(app_label=app, model__iexact=modelname)
+    content_type = ContentType.objects.get(app_label=app,
+                                           model__iexact=modelname)
     if request.is_ajax():
         response = views.vote(
             request,
@@ -58,3 +58,18 @@ def like(request, content_type, id, vote):
     signals.object_liked.send(sender=content_type.model_class(),
         instance=content_type.get_object_for_this_type(id=id), request=request)
     return response
+
+
+def like_celery(request, content_type, id, vote):
+    if 'HTTP_REFERER' not in request.META:
+        return HttpResponseNotFound()
+
+    url_friendly_content_type = content_type
+    app, modelname = content_type.split('-')
+    content_type = ContentType.objects.get(app_label=app,
+                                           model__iexact=modelname)
+
+    redirect_url = '%s?v=%s' % (request.META['HTTP_REFERER'],
+                                    random.randint(0, 10))
+    tasks.like.delay(request, content_type, id, vote, can_vote_test)
+    return redirect(redirect_url)

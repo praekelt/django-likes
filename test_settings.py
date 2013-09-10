@@ -24,3 +24,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'likes.middleware.SecretBallotUserIpUseragentMiddleware',
 )
+
+CELERY_ALWAYS_EAGER = True
+CELERY_IMPORTS = ('likes.tasks', )

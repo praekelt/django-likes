@@ -45,3 +45,9 @@ class TestCase(TestCase):
             HTTP_X_REQUESTED_WITH='XMLHttpRequest'
         )
         self.assertEqual(response.status_code, 200)
+
+    def test_like_celery(self):
+        # Anonymous vote
+        response = self.client.get('/like/celery/auth-user/%s/1' % self.user.id)
+        # Expect a redirect
+        self.assertEqual(response.status_code, 302)
