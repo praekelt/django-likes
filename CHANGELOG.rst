@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.1 (2013-11-08)
+----------------
+#. Refactor `live` to `on` so a jQuery >= 1.9 can be used.
+#. Translations.
+
 0.0.12 (2013-08-16)
 -------------------
 #. Only use jQuery if it is present.

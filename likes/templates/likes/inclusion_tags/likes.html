@@ -1,15 +1,17 @@
+{% load i18n %}
+
 {% if import_js %}
-<script type="text/javascript" src="{{ STATIC_URL }}likes/includes/likes.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}likes/includes/likes.js"></script>
 {% endif %}
 
 {% if likes_enabled %}
     <div class="likes">
         {{ content_obj.vote_total }}
         <span>
-            {% if can_vote %}            
-                <a class="liker" href="{% url like content_type content_obj.id 1 %}" rel="nofollow">I Like</a>
+            {% if can_vote %}
+                <a class="liker" href="{% url like content_type content_obj.id 1 %}" rel="nofollow">{% trans "I Like" %}</a>
             {% else %}
-                Likes
+                {% trans "Likes" %}
             {% endif %}
         </span>
     </div>
