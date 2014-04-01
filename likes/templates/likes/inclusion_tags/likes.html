@@ -9,7 +9,7 @@
         {{ content_obj.vote_total }}
         <span>
             {% if can_vote %}
-                <a class="liker" href="{% url like content_type content_obj.id 1 %}" rel="nofollow">{% trans "I Like" %}</a>
+                <a class="liker" href="{% url 'like' content_type content_obj.id 1 %}" rel="nofollow">{% trans "I Like" %}</a>
             {% else %}
                 {% trans "Likes" %}
             {% endif %}
