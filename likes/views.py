@@ -47,7 +47,6 @@ def like(request, content_type, id, vote):
                 'likes_enabled': True,
                 'can_vote': False,
                 "content_type": url_friendly_content_type,
-                "request": request,
             }
         )
     else:
