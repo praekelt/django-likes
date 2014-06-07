@@ -27,15 +27,15 @@ def like(request, content_type, id, vote):
 
     url_friendly_content_type = content_type
     app, modelname = content_type.split('-')
-    likes_template = 'likes/inclusion_tags/likes_%s.html' % modelname
-
-    try:
-        template.loader.get_template(likes_template)
-    except template.TemplateDoesNotExist:
-        likes_template = 'likes/inclusion_tags/likes.html'
     
     content_type = ContentType.objects.get(app_label=app, model__iexact=modelname)
     if request.is_ajax():
+        likes_template = 'likes/inclusion_tags/likes_%s.html' % modelname.lower()
+        try:
+            template.loader.get_template(likes_template)
+        except template.TemplateDoesNotExist:
+            likes_template = 'likes/inclusion_tags/likes.html'
+
         response = views.vote(
             request,
             content_type=content_type,
