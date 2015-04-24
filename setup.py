@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='django-likes',
-    version='0.1',
+    version='0.2',
     description='Django app providing view interface to django-secretballot.',
     long_description = open('README.rst', 'r').read() + open('AUTHORS.rst', 'r').read() + open('CHANGELOG.rst', 'r').read(),
     author='Praekelt Foundation',
@@ -15,7 +15,7 @@ setup(
         'django-secretballot',
     ],
     tests_require=[
-        'django-setuptest>=0.0.6',
+        'django-setuptest>=0.1.4',
     ],
     test_suite="setuptest.setuptest.SetupTestSuite",
     classifiers = [
