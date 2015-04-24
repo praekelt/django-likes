@@ -2,6 +2,7 @@ import random
 
 from django.http import HttpResponseNotFound
 from django.contrib.contenttypes.models import ContentType
+from django import template
 
 from secretballot import views
 from secretballot.models import Vote
@@ -26,19 +27,26 @@ def like(request, content_type, id, vote):
 
     url_friendly_content_type = content_type
     app, modelname = content_type.split('-')
+    
     content_type = ContentType.objects.get(app_label=app, model__iexact=modelname)
     if request.is_ajax():
+        likes_template = 'likes/inclusion_tags/likes_%s.html' % modelname.lower()
+        try:
+            template.loader.get_template(likes_template)
+        except template.TemplateDoesNotExist:
+            likes_template = 'likes/inclusion_tags/likes.html'
+
         response = views.vote(
             request,
             content_type=content_type,
             object_id=id,
             vote=vote,
-            template_name='likes/inclusion_tags/likes.html',
+            template_name=likes_template,
             can_vote_test=can_vote_test,
             extra_context={
                 'likes_enabled': True,
                 'can_vote': False,
-                "content_type": url_friendly_content_type
+                "content_type": url_friendly_content_type,
             }
         )
     else:
