@@ -39,7 +39,7 @@ Usage
 Template Tags
 ~~~~~~~~~~~~~
 
-{% like object %}
+{% likes object %}
 +++++++++++++++++
 django-likes provides an inclusion tag called ``likes`` which renders a like button for any given object, displaying the number of likes and allowing users to like the object. The tag accepts as first argument the object for which to display and on which to apply likes, i.e.::
 
