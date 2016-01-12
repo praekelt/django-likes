@@ -12,7 +12,7 @@ setup(
     packages = find_packages(),
     include_package_data=True,
     install_requires = [
-        'django-secretballot',
+        'django-secretballot==0.3.0',
     ],
     tests_require=[
         'django-setuptest>=0.1.4',
