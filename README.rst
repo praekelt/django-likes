@@ -7,6 +7,17 @@ This app utilizes `django-secretballot <http://pypi.python.org/pypi/django-secre
 .. contents:: Contents
     :depth: 5
 
+
+Requirements
+------------
+
+#. python >= 2.4, < 3
+
+#. django >= 1.6, < 1.9
+
+#. django-secretballot == 0.4.0
+
+
 Installation
 ------------
 #. Install or add ``django-likes`` to your Python path.
