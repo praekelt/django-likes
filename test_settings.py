@@ -3,6 +3,9 @@ import os
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+# SECURITY WARNING: THIS KEY IS FOR TEST PURPOSES ONLY!
+SECRET_KEY = 'test secret key, do not use'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',

@@ -27,7 +27,6 @@ def like(request, content_type, id, vote):
 
     url_friendly_content_type = content_type
     app, modelname = content_type.split('-')
-    
     content_type = ContentType.objects.get(app_label=app, model__iexact=modelname)
     if request.is_ajax():
         likes_template = 'likes/inclusion_tags/likes_%s.html' % modelname.lower()
@@ -63,6 +62,9 @@ def like(request, content_type, id, vote):
             can_vote_test=can_vote_test
         )
 
-    signals.object_liked.send(sender=content_type.model_class(),
-        instance=content_type.get_object_for_this_type(id=id), request=request)
+    signals.object_liked.send(
+        sender=content_type.model_class(),
+        instance=content_type.get_object_for_this_type(id=id),
+        request=request
+    )
     return response

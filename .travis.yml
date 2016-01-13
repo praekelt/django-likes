@@ -1,8 +1,11 @@
 language: python
+python:
+    - "2.7"
 install:
-  - pip install tox 
+  - pip install tox
+  - pip install $DJANGO_PACKAGE 
 script:
-  - tox
+  - PYTHONPATH=. DJANGO_SETTINGS_MODULE=tests.test_settings django-admin test
 env:
   - TOXENV=django17
   - TOXENV=django18
