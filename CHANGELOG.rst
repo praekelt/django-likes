@@ -4,6 +4,8 @@ Changelog
 0.3.0 (2016-01-13)
 -------------------
 #. Pinned to django-secretballot 0.4.0 for django 1.8
+#. Changed deprecate module_name in favor of model_name
+#. Added travis and tox integration
 
 0.2.1 (2016-01-13)
 -------------------

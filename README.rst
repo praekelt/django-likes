@@ -11,11 +11,11 @@ This app utilizes `django-secretballot <http://pypi.python.org/pypi/django-secre
 Requirements
 ------------
 
-#. python >= 2.4, < 3
+#. Python (2.6, 2.7)
 
-#. django >= 1.6, < 1.9
+#. Django (1.6, 1.8)
 
-#. django-secretballot == 0.4.0
+#. django-secretballot 0.4.0
 
 
 Installation
