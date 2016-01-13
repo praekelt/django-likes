@@ -13,7 +13,7 @@ Requirements
 
 #. Python (2.6, 2.7)
 
-#. Django (1.6, 1.8)
+#. Django (1.7, 1.8)
 
 #. django-secretballot 0.4.0
 
