@@ -5,4 +5,4 @@ env:
   - TOXENV=django17
   - TOXENV=django18
 install: pip install $DJANGO_PACKAGE 
-script: ./runtests.py
+script: python runtests.py
