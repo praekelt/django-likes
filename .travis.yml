@@ -1,9 +1,12 @@
 language: python
 python:
-    - "2.6"
     - "2.7"
 env:
   - TOXENV=django17
   - TOXENV=django18
-install: pip install tox
+install: 
+  - pip install tox
+  - pip install coverall
 script: tox
+after_success:
+  - coveralls
