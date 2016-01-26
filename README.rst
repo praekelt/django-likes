@@ -17,7 +17,7 @@ This app utilizes `django-secretballot <http://pypi.python.org/pypi/django-secre
 Requirements
 ------------
 
-#. Python (2.6, 2.7)
+#. Python 2.7
 
 #. Django (1.7, 1.8)
 
