@@ -6,6 +6,7 @@ env:
   - TOXENV=django18
 install: 
   - pip install tox
+  - pip install coverage
   - pip install coveralls
 script: tox
 after_success:

@@ -13,11 +13,9 @@ class Client(BaseClient):
 
     def _base_environ(self, **request):
         result = super(Client, self)._base_environ(**request)
-        # result = HttpResponse("", content_type="text/plain; charset=utf-8")
         result['HTTP_USER_AGENT'] = 'Django Unittest'
         result['wsgi.input'] = FakePayload(b'')
         result['Content-Type'] = "text/plain; charset=utf-8"
-        print result
         return result
 
 
@@ -47,7 +45,7 @@ class TestCase(TestCase):
 
     @unittest.skip("Found bug in django-secretballot with Django 1.8.2+")
     def test_like_ajax(self):
-        # Anonymous vote from robot (no HTTP_REFERER)
+        # Anonymous vote
         response = self.client.get(
             '/like/auth-user/%s/1' % self.user.id,
             HTTP_REFERER='Dummy',
