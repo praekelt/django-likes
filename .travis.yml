@@ -4,10 +4,9 @@ python:
 env:
   - TOXENV=django17
   - TOXENV=django18
+  - TOXENV=coverage
 install: 
   - pip install tox
   - pip install coverage
   - pip install coveralls
 script: tox
-after_success:
-  - coveralls

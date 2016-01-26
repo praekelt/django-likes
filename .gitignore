@@ -4,3 +4,4 @@
 *.eggs/
 *.tox/
 *.coverage
+*.cache/
