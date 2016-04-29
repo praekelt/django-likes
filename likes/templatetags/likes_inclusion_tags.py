@@ -21,7 +21,7 @@ def likes(context, obj, template=None):
         'content_obj': obj,
         'likes_enabled': likes_enabled(obj, request),
         'can_vote': can_vote(obj, request.user, request),
-        'content_type': "-".join((obj._meta.app_label, obj._meta.module_name)),
+        'content_type': "-".join((obj._meta.app_label, obj._meta.model_name)),
         'import_js': import_js
     })
     return context
