@@ -1,0 +1,10 @@
+language: python
+
+env:
+  - TOXENV=django16
+  - TOXENV=django19
+
+install:
+  - pip install tox
+
+script: tox
