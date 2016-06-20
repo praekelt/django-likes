@@ -1,0 +1,3 @@
+-e git+https://github.com/hedleyroos/django-secretballot.git#egg=django-secretballot
+Django==1.8.6
+pytz==2016.4

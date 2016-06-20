@@ -3,7 +3,7 @@ Changelog
 
 next
 ----
-#. Django 1.9 compatibility.
+#. Django 1.9 compatibility. Since `django-secretballot` has deprecated support for Django 1.6 we follow suit.
 
 0.2
 ---
