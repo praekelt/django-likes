@@ -1,7 +1,7 @@
 language: python
 
 env:
-  - TOXENV=django16
+  - TOXENV=django18
   - TOXENV=django19
 
 install:
