@@ -12,10 +12,10 @@ setup(
     packages = find_packages(),
     include_package_data=True,
     install_requires = [
-        'django-secretballot',
+        'django-secretballot>=0.6',
     ],
     tests_require=[
-        'django-setuptest>=0.1.4',
+        'tox',
     ],
     test_suite="setuptest.setuptest.SetupTestSuite",
     classifiers = [
