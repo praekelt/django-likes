@@ -1,0 +1,3 @@
+Django==1.9.6
+pytz==2016.4
+django-secretballot==0.6.0

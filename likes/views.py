@@ -22,19 +22,19 @@ def can_vote_test(request, content_type, object_id, vote):
 def like(request, content_type, id, vote):
     # Crawlers will follow the like link if anonymous liking is enabled. They
     # typically do not have referrer set.
-    if 'HTTP_REFERER' not in request.META:
+    if "HTTP_REFERER" not in request.META:
         return HttpResponseNotFound()
 
     url_friendly_content_type = content_type
-    app, modelname = content_type.split('-')
-    
+    app, modelname = content_type.split("-")
+
     content_type = ContentType.objects.get(app_label=app, model__iexact=modelname)
     if request.is_ajax():
-        likes_template = 'likes/inclusion_tags/likes_%s.html' % modelname.lower()
+        likes_template = "likes/inclusion_tags/likes_%s.html" % modelname.lower()
         try:
             template.loader.get_template(likes_template)
         except template.TemplateDoesNotExist:
-            likes_template = 'likes/inclusion_tags/likes.html'
+            likes_template = "likes/inclusion_tags/likes.html"
 
         response = views.vote(
             request,
@@ -44,15 +44,15 @@ def like(request, content_type, id, vote):
             template_name=likes_template,
             can_vote_test=can_vote_test,
             extra_context={
-                'likes_enabled': True,
-                'can_vote': False,
+                "likes_enabled": True,
+                "can_vote": False,
                 "content_type": url_friendly_content_type,
             }
         )
     else:
-        # Redirect to referer but append unique number(determined
+        # Redirect to referer but append unique number (determined
         # from global vote count) to end of URL to bypass local cache.
-        redirect_url = '%s?v=%s' % (request.META['HTTP_REFERER'],
+        redirect_url = "%s?v=%s" % (request.META["HTTP_REFERER"],
                                     random.randint(0, 10))
         response = views.vote(
             request,
