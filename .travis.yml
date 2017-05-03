@@ -3,6 +3,8 @@ language: python
 env:
   - TOXENV=django18
   - TOXENV=django19
+  - TOXENV=django110
+  - TOXENV=django111
 
 install:
   - pip install tox
