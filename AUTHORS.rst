@@ -1,4 +1,4 @@
-Praekelt Foundation
+Praekelt Consulting
 ===================
 * Shaun Sephton
 * Jonathan Bydendyk
