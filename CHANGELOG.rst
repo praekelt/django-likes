@@ -1,7 +1,7 @@
 Changelog
 =========
 
-next
+1.11
 ----
 #. Django 1.11 compatibility.
 
