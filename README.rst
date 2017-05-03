@@ -2,7 +2,7 @@ Django Likes
 ============
 **Django app providing view interface to django-secretballot.**
 
-This app utilizes .. _django-secretballot: http://pypi.python.org/pypi/django-secretballot to provide Facebook or Google+1 style item liking of Django model objects. Authenticated or anonymous users are allowed to like any given object only once.
+This app utilizes `django-secretballot <http://pypi.python.org/pypi/django-secretballot/>`_ to provide Facebook or Google+1 style item liking of Django model objects. Authenticated or anonymous users are allowed to like any given object only once.
 
 .. contents:: Contents
     :depth: 5
