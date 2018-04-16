@@ -5,6 +5,7 @@ env:
   - TOXENV=django19
   - TOXENV=django110
   - TOXENV=django111
+  - TOXENV=django111-py35
 
 install:
   - pip install tox
