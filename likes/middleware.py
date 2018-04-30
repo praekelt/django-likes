@@ -11,7 +11,10 @@ from secretballot.middleware import SecretBallotIpUseragentMiddleware
 class SecretBallotUserIpUseragentMiddleware(SecretBallotIpUseragentMiddleware):
 
     def generate_token(self, request):
-        if request.user.is_authenticated():
+        authenticated = request.user.is_authenticated
+        if callable(authenticated):
+            authenticated = authenticated()
+        if authenticated:
             return request.user.username
         else:
             try:

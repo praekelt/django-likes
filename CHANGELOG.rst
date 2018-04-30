@@ -4,6 +4,7 @@ Changelog
 next
 ----
 #. Python 3.5 support.
+#. Django 2.0 compatibility.
 
 1.11
 ----
