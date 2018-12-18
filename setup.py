@@ -15,9 +15,10 @@ setup(
         'django-secretballot>=1.0.0',
     ],
     tests_require=[
+        'pytest',
         'tox',
     ],
-    test_suite="setuptest.setuptest.SetupTestSuite",
+    test_suite="tox",
     classifiers=[
         "License :: OSI Approved :: BSD License",
         "Development Status :: 4 - Beta",
