@@ -3,7 +3,7 @@ Django Likes
 **Django app providing view interface to django-secretballot.**
 
 .. image:: https://travis-ci.org/praekelt/django-likes.svg?branch=develop
-    :target: https://travis-ci.org/praekelt/django-likes?branch=devlop
+    :target: https://travis-ci.org/praekelt/django-likes?branch=develop
 
 .. image:: https://coveralls.io/repos/github/praekelt/django-likes/badge.svg?branch=develop
     :target: https://coveralls.io/github/praekelt/django-likes?branch=develop
