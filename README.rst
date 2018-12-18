@@ -2,10 +2,25 @@ Django Likes
 ============
 **Django app providing view interface to django-secretballot.**
 
+.. image:: https://travis-ci.org/praekelt/django-likes.svg?branch=develop
+    :target: https://travis-ci.org/praekelt/django-likes?branch=develop
+
+.. image:: https://coveralls.io/repos/github/praekelt/django-likes/badge.svg?branch=develop
+    :target: https://coveralls.io/github/praekelt/django-likes?branch=develop
+
 This app utilizes `Django Secretballot <http://pypi.python.org/pypi/django-secretballot/>`_ to provide Facebook or Google+1 style item liking of Django model objects. Authenticated or anonymous users are allowed to like any given object only once.
 
 .. contents:: Contents
     :depth: 5
+
+Requirements
+------------
+
+#. Python 2.7, 3.5+
+
+#. Django 1.11, 2.0+
+
+#. django-secretballot 1.0.0
 
 Installation
 ------------
@@ -39,7 +54,7 @@ Usage
 Template Tags
 ~~~~~~~~~~~~~
 
-{% like object %}
+{% likes object %}
 +++++++++++++++++
 django-likes provides an inclusion tag called ``likes`` which renders a like button for any given object, displaying the number of likes and allowing users to like the object. The tag accepts as first argument the object for which to display and on which to apply likes, i.e.::
 
