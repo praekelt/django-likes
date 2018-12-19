@@ -32,7 +32,7 @@ Installation
 
 #. Add likes url include to your project's ``urls.py`` file::
 
-    (r'^likes/', include('likes.urls')),
+    url('likes/', include('likes.urls')),
 
 #. Add ``likes.middleware.SecretBallotUserIpUseragentMiddleware`` to your ``MIDDLEWARE_CLASSES`` setting, i.e.::
 
@@ -41,12 +41,7 @@ Installation
         "likes.middleware.SecretBallotUserIpUseragentMiddleware",
     )
 
-#. Add ``django.core.context_processors.request`` to your ``TEMPLATE_CONTEXT_PROCESSORS`` setting, i.e.::
-
-    TEMPLATE_CONTEXT_PROCESSORS = (
-        ...other context processors...
-        "django.core.context_processors.request",
-    )
+#. Make sure ``django.template.context_processors.request`` is in your ``TEMPLATES['OPTIONS']['context_processors']`` setting.
 
 Usage
 -----
