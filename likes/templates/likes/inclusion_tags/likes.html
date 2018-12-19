@@ -1,7 +1,8 @@
 {% load i18n %}
+{% load static %}
 
 {% if import_js %}
-    <script type="text/javascript" src="{{ STATIC_URL }}likes/includes/likes.js"></script>
+    <script type="text/javascript" src="{% static "likes/includes/likes.js" %}"></script>
 {% endif %}
 
 {% if likes_enabled %}
