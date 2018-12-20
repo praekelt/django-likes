@@ -8,8 +8,8 @@ Django Likes
 .. image:: https://coveralls.io/repos/github/praekelt/django-likes/badge.svg?branch=develop
     :target: https://coveralls.io/github/praekelt/django-likes?branch=develop
 
-.. image:: https://badge.fury.io/py/django-preferences.svg
-    :target: https://badge.fury.io/py/django-preferences
+.. image:: https://badge.fury.io/py/django-likes.svg
+    :target: https://badge.fury.io/py/django-likes
 
 This app utilizes `Django Secretballot <http://pypi.python.org/pypi/django-secretballot/>`_ to provide Facebook or Google+1 style item liking of Django model objects. Authenticated or anonymous users are allowed to like any given object only once.
 
