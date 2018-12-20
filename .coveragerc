@@ -1,0 +1,10 @@
+[run]
+branch = True
+source =
+    likes
+omit =
+    *migrations*
+    *tests*
+
+[report]
+show_missing = True
