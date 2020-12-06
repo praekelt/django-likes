@@ -35,7 +35,7 @@ def can_vote(obj, user, request):
 
     # Common predicate
     if Vote.objects.filter(
-        object_id=obj.id,
+        object_id=obj.pk,
         content_type=ContentType.objects.get_for_model(obj),
         token=request.secretballot_token
     ).exists():
