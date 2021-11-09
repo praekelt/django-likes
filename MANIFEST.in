@@ -1,8 +1,6 @@
 include AUTHORS.rst
-include CHANGELOG.rst
+include CHANGES.rst
 include LICENSE
 include README.rst
-recursive-include likes/static *
-recursive-include likes/templates *
-recursive-include likes/templatetags *
-recursive-include likes/tests *
+recursive-include likes/static *.js
+recursive-include likes/templates *.html

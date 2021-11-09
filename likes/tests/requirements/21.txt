@@ -1,3 +1,0 @@
-Django>=2.1,<2.2
-pytz==2018.7
-django-secretballot==1.0.0

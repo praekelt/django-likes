@@ -1,22 +1,20 @@
+# Config file for automatic testing at travis-ci.org
+dist: xenial
 language: python
+cache: pip
+sudo: false
 
-matrix:
-    include:
-        - python: 2.7
-          env: TOXENV=django111
-        - python: 3.5
-          env: TOXENV=django111-py35
-        - python: 3.7
-          dist: xenial
-          sudo: true
-          env: TOXENV=django21-py37
+python:
+  - "3.6"
+  - "3.7"
+  - "3.8"
+  - "3.9"
 
 install:
-  - pip install tox
-  - pip install coverage
-  - pip install coveralls
+  - pip install tox-travis coveralls
 
-script: tox
+script:
+  - tox
 
 after_success:
-- coveralls
+  - coveralls

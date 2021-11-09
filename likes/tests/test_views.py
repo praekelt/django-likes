@@ -1,5 +1,4 @@
-import unittest
-
+from django.test import TestCase
 from django.contrib.auth import get_user_model
 from django.test.client import Client as BaseClient, FakePayload
 from django.core.handlers.wsgi import WSGIRequest
@@ -7,7 +6,8 @@ from django.core.handlers.wsgi import WSGIRequest
 import secretballot
 
 from likes.templatetags import likes_inclusion_tags
-from likes.tests.models import TestModel
+
+from .models import TestModel
 
 
 class Client(BaseClient):
@@ -21,16 +21,14 @@ class Client(BaseClient):
         return result
 
 
-class ViewsTestCase(unittest.TestCase):
+class ViewsTestCase(TestCase):
     """Liking cannot be done programatically since it is tied too closely to a
     request. Do through-the-web tests."""
 
-    @classmethod
-    def setUpClass(cls):
-        secretballot.enable_voting_on(TestModel)
-        cls.client = Client()
-        cls.obj1 = TestModel.objects.create()
-        cls.obj2 = TestModel.objects.create()
+    def setUp(self):
+        self.client = Client()
+        self.obj1 = TestModel.objects.create()
+        self.obj2 = TestModel.objects.create()
 
     def test_like(self):
         # Anonymous vote
