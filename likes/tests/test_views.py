@@ -1,11 +1,6 @@
 from django.test import TestCase
-from django.contrib.auth import get_user_model
-from django.test.client import Client as BaseClient, FakePayload
-from django.core.handlers.wsgi import WSGIRequest
-
-import secretballot
-
-from likes.templatetags import likes_inclusion_tags
+from django.test.client import Client as BaseClient
+from django.test.client import FakePayload
 
 from .models import TestModel
 
@@ -38,9 +33,6 @@ class ViewsTestCase(TestCase):
 
     def test_like_ajax(self):
         # Anonymous vote
-        response = self.client.get(
-            "/like/tests-testmodel/%s/1/" % self.obj2.id,
-            HTTP_X_REQUESTED_WITH="XMLHttpRequest"
-        )
-        #import pdb;pdb.set_trace()
+        response = self.client.get("/like/tests-testmodel/%s/1/" % self.obj2.id, HTTP_X_REQUESTED_WITH="XMLHttpRequest")
+        # import pdb;pdb.set_trace()
         self.assertEqual(response.status_code, 200)
