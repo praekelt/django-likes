@@ -19,7 +19,7 @@ def can_vote_test(request, content_type, object_id, vote):
     )
 
 
-def like(request, content_type, id, vote):
+def like(request, content_type, id, vote, template_name='likes/inclusion_tags/likes.html', can_vote_test=can_vote_test):
     # Crawlers will follow the like link if anonymous liking is enabled. They
     # typically do not have referrer set.
     if "HTTP_REFERER" not in request.META:
@@ -40,8 +40,8 @@ def like(request, content_type, id, vote):
             request,
             content_type=content_type,
             object_id=id,
-            vote=vote,
-            template_name=likes_template,
+            vote=int(vote),
+            template_name=template_name,
             can_vote_test=can_vote_test,
             extra_context={
                 "likes_enabled": True,
@@ -58,7 +58,7 @@ def like(request, content_type, id, vote):
             request,
             content_type=content_type,
             object_id=id,
-            vote=vote,
+            vote=int(vote),
             redirect_url=redirect_url,
             can_vote_test=can_vote_test
         )
