@@ -6,7 +6,7 @@ from django.http import HttpResponseNotFound
 from secretballot import views
 
 from likes import signals
-from likes.utils import can_vote
+from likes.utils import can_vote, is_ajax
 
 
 def can_vote_test(request, content_type, object_id, vote):
@@ -23,7 +23,7 @@ def like(request, content_type, id, vote, template_name="likes/inclusion_tags/li
     app, modelname = content_type.split("-")
 
     content_type = ContentType.objects.get(app_label=app, model__iexact=modelname)
-    if request.is_ajax():
+    if is_ajax(request.META):
         likes_template = "likes/inclusion_tags/likes_%s.html" % modelname.lower()
         try:
             template.loader.get_template(likes_template)
@@ -46,7 +46,7 @@ def like(request, content_type, id, vote, template_name="likes/inclusion_tags/li
     else:
         # Redirect to referer but append unique number (determined
         # from global vote count) to end of URL to bypass local cache.
-        redirect_url = "%s?v=%s" % (request.META["HTTP_REFERER"], random.randint(0, 10))
+        redirect_url = "%s?v=%s" % (request.headers['Referer'], random.randint(0, 10))
         response = views.vote(
             request,
             content_type=content_type,

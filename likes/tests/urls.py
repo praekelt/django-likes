@@ -1,5 +1,5 @@
-from django.conf.urls import include, url
+from django.urls import include, path
 
 from likes import urls as likes_urls
 
-urlpatterns = [url(r"^", include(likes_urls))]
+urlpatterns = [path('', include(likes_urls))]

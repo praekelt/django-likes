@@ -16,6 +16,16 @@ def _votes_enabled(obj):
     return hasattr(obj.__class__, "votes")
 
 
+def is_ajax(meta):
+    if "HTTP_X_REQUESTED_WITH" not in meta:
+        return False
+
+    if meta["HTTP_X_REQUESTED_WITH"] == "XMLHttpRequest":
+        return True
+
+    return False
+
+
 def likes_enabled(obj, request):
     if not _votes_enabled(obj):
         return False
