@@ -1,6 +1,11 @@
 Changelog
 =========
 
+2.0.2
+-----
+#. Python 3.8, 3.9, 3.10, 3.11 support.
+#. Django 3.1, 3.2, 4.0, 4.1 compatibility.
+
 2.0.1
 -----
 #. Python 3.7 support.
